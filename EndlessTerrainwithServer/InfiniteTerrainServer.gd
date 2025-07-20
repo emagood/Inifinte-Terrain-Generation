@@ -134,4 +134,3 @@ func get_active_threads():
 		if i.is_alive():
 			active_threads += 1
 	return active_threads
-

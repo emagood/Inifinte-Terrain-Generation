@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://rxki7fo4b00c"]
+[gd_scene load_steps=9 format=3 uid="uid://rxki7fo4b00c"]
 
-[ext_resource type="Script" path="res://EndlessTerrainThreaded/EndlessTerrainThreaded.gd" id="1_a5omx"]
+[ext_resource type="Script" uid="uid://cflpiw3hsl2dd" path="res://EndlessTerrainThreaded/EndlessTerrainThreaded.gd" id="1_a5omx"]
 [ext_resource type="PackedScene" uid="uid://b2x34ysakaigh" path="res://EndlessTerrainThreaded/TerrainChunkMT.tscn" id="2_rwqoh"]
 [ext_resource type="Sky" uid="uid://dgwxj6r8ymssf" path="res://Sky.tres" id="4_fgrfl"]
-[ext_resource type="Script" path="res://Debug/debug.gd" id="4_vvtep"]
+[ext_resource type="Script" uid="uid://dcbaqm6w283xf" path="res://Debug/debug.gd" id="4_vvtep"]
 [ext_resource type="PackedScene" uid="uid://4eyad0j15nfi" path="res://Player/Player.tscn" id="5_4ox3w"]
+[ext_resource type="Texture2D" uid="uid://x2o3ihs2nmx0" path="res://icon.svg" id="6_m7vy7"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_w4m3e"]
 noise_type = 3
@@ -21,12 +22,14 @@ glow_enabled = true
 script = ExtResource("1_a5omx")
 viewer = NodePath("../Player")
 chunk_mesh_scene = ExtResource("2_rwqoh")
-thread_count = 15
+thread_count = 1
 noise = SubResource("FastNoiseLite_w4m3e")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, -5.82559, 11.3009, -1.80568)
 shadow_enabled = true
+directional_shadow_mode = 0
+directional_shadow_max_distance = 75.7
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rmk44")
@@ -92,6 +95,22 @@ text = "Move Speed
 "
 
 [node name="Player" parent="." instance=ExtResource("5_4ox3w")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(21.000006, 578)
+scale = Vector2(0.6484375, 0.484375)
+texture_normal = ExtResource("6_m7vy7")
+texture_pressed = ExtResource("6_m7vy7")
+action = "up"
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(229, 573)
+scale = Vector2(0.6484375, 0.484375)
+texture_normal = ExtResource("6_m7vy7")
+texture_pressed = ExtResource("6_m7vy7")
+action = "gravity_toggle"
 
 [connection signal="toggled" from="debug/view_debug" to="debug" method="_on_check_box_toggled"]
 [connection signal="toggled" from="debug/show_wireframe" to="debug" method="_on_show_wireframe_toggled"]

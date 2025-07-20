@@ -139,4 +139,3 @@ func setChunkVisible(_is_visible):
 #get chunk visible
 func getChunkVisible():
 	return visible
-

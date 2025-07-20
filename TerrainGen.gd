@@ -1,7 +1,7 @@
 @tool
 extends MeshInstance3D
 
-@export_range(20,400, 1) var Terrain_Size := 100
+@export_range(20,4000, 1) var Terrain_Size := 100
 @export_range(1, 100, 1) var resolution := 30
 #center terrain
 const center_offset := 0.5
